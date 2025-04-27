@@ -28,12 +28,12 @@ export class TipoService {
        return this.http.get<ITipo[]>(`${this.url}/buscar/${dato}`);
      }
    
-     public agregar(festivo: ITipo): Observable<ITipo> {
-       return this.http.post<ITipo>(`${this.url}/agregar`, festivo);
+     public agregar(tipo: ITipo): Observable<ITipo> {
+       return this.http.post<ITipo>(`${this.url}/agregar`, tipo);
      }
    
-     public modificar(festivo: ITipo): Observable<ITipo> {
-       return this.http.post<ITipo>(`${this.url}/modificar`, festivo);
+     public modificar(tipo: ITipo): Observable<ITipo> {
+       return this.http.post<ITipo>(`${this.url}/modificar`, tipo);
      }
    
      public eliminarFestivo(id: number): Observable<ITipo[]> {
