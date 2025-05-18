@@ -38,8 +38,7 @@ export class TipoService {
    
      public eliminarFestivo(id: number): Observable<ITipo[]> {
        return this.http.delete<ITipo[]>(`${this.url}/eliminar/${id}`);
-     }
-   
+     }   
 }
 
 
