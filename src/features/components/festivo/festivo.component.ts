@@ -9,10 +9,11 @@ import { ITipo } from '../../../shared/entidades/tipo';
 import { TipoService } from '../../../core/services/tipo.service';
 import { FormsModule } from '@angular/forms';
 import { NgFor } from '@angular/common';
+import { DecidirComponent } from '../../../shared/components/decidir/decidir.component';
 
 @Component({
   selector: 'app-festivo',
-  imports: [ReferenciasMaterialModule, NgxDatatableModule, FormsModule, NgFor],
+  imports: [ReferenciasMaterialModule, NgxDatatableModule, FormsModule],
   templateUrl: './festivo.component.html',
   styleUrl: './festivo.component.css'
 })
@@ -30,8 +31,9 @@ export class FestivoComponent implements OnInit {
 
   public columnas = [
     { name: "Nombre", prop: "nombre" },
-    { name: "dia", prop: "dia" },
-    { name: "mes", prop: "mes" },
+    { name: "Dia", prop: "dia" },
+    { name: "Mes", prop: "mes" },
+    { name: "Tipo Festivo", prop: "tipoFestivo.descripcion" },
   ];
   public modoColumna = ColumnMode;
   public tipoTipo = SelectionType;
@@ -131,6 +133,45 @@ export class FestivoComponent implements OnInit {
     }
     else {
       this.listar(-1);
+    }
+  }
+
+  public verificarEliminar() {
+    if (this.festivoEscogido) {
+      const dialogo = this.servicioDialogo.open(DecidirComponent, {
+        width: "300px",
+        height: "200px",
+        data: {
+          encabezado: `Está seguro de eliminar el festivo ${this.festivoEscogido.nombre} ?`,
+          id: this.festivoEscogido.id
+        },
+        disableClose: true,
+      });
+      dialogo.afterClosed().subscribe({
+        next: datos => {
+          if (datos) {
+            this.servicioFestivo.eliminarFestivo(datos.id).subscribe({
+              next: response => {
+                if (response) {
+                  this.listar(-1);
+                  window.alert("festivo eliminado con éxito");
+                } else {
+                  window.alert("No se pudo eliminar el festivo");
+                }
+              },
+              error: error => {
+                window.alert(error.message);
+              }
+            });
+          }
+        },
+        error: error => {
+          window.alert(error.message);
+        }
+      });
+    }
+    else {
+      window.alert("Debe escoger el festivo a eliminar");
     }
   }
 

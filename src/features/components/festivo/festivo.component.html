@@ -4,14 +4,14 @@
     </div>
 </mat-toolbar>
 <div>
-    <mat-form-field appearance="fill" cont>
+    <!-- <mat-form-field appearance="fill" cont>
         <mat-label>Opción de Búsqueda</mat-label>
         <mat-select [(value)]="opcionBusqueda">
             <mat-option *ngFor="let opcion of opcionesBusqueda; let i = index" [value]="i">
                 {{opcion}}
             </mat-option>
         </mat-select>
-    </mat-form-field>
+    </mat-form-field> -->
 
     <mat-form-field appearance="fill">
         <mat-label>Buscar</mat-label>
@@ -23,7 +23,7 @@
 <div>
     <button mat-raised-button color="primary" (click)="agregar()">Agregar</button>
      <button mat-raised-button color="accent" (click)="modificar()">Modificar</button>
-     <!-- <button mat-raised-button color="warn" (click)="verificarEliminar()">Eliminar</button> -->
+     <button mat-raised-button color="warn" (click)="verificarEliminar()">Eliminar</button>
     <ngx-datatable class="dark" [rows]="festivos" [columns]="columnas" [limit]="TAMANO"
     [headerHeight]="50"  [footerHeight]="50" [columnMode]="modoColumna.force" [selectionType]="tipoTipo.single"
     (activate)="escoger($event)" [selected]="[festivoEscogido]">
