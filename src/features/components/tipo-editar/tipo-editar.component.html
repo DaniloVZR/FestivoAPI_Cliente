@@ -1,0 +1,12 @@
+<div mat-dialog-content>
+    <h2>{{datos.encabezado}}</h2>
+    <br>
+    <mat-form-field appearance="fill" style="width:100%;">
+        <mat-label>Descripcion</mat-label>
+        <input matInput [(ngModel)]="datos.tipo.descripcion">
+    </mat-form-field>
+</div>
+<div mat-dialog-actions>
+    <button mat-raised-button color="primary" [mat-dialog-close]="datos">Aceptar</button>
+    <button mat-stroked-button color="primary" (click)="cerrar()">Cancelar</button>
+</div>

@@ -33,7 +33,7 @@ export class FestivoService {
   }
 
   public modificar(festivo: IFestivo): Observable<IFestivo> {
-    return this.http.post<IFestivo>(`${this.url}/modificar`, festivo);
+    return this.http.put<IFestivo>(`${this.url}/modificar`, festivo);
   }
 
   public eliminarFestivo(id: number): Observable<IFestivo[]> {
