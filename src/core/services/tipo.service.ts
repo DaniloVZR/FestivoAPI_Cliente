@@ -33,7 +33,7 @@ export class TipoService {
      }
    
      public modificar(tipo: ITipo): Observable<ITipo> {
-       return this.http.post<ITipo>(`${this.url}/modificar`, tipo);
+       return this.http.put<ITipo>(`${this.url}/modificar`, tipo);
      }
    
      public eliminarFestivo(id: number): Observable<ITipo[]> {
