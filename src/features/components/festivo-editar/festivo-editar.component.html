@@ -1,0 +1,39 @@
+<div mat-dialog-content>
+    <h2>{{datos.encabezado}}</h2>
+
+    <mat-form-field appearance="fill" style="width:100%;">
+        <mat-label>Nombre</mat-label>
+        <input matInput [(ngModel)]="datos.festivo.nombre">
+    </mat-form-field>
+
+    <br>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Dia</mat-label>
+        <input matInput [(ngModel)]="datos.festivo.dia">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Mes</mat-label>
+        <input matInput [(ngModel)]="datos.festivo.mes">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Dias de Pascua</mat-label>
+        <input matInput [(ngModel)]="datos.festivo.diaPascua">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" style="width:100%">
+        <mat-label>Tipos de Festivos</mat-label>
+        <mat-select [(value)]="datos.festivo.idTipo">
+            <mat-option *ngFor="let tipos of datos.tipos" [value]="tipos">  
+                {{tipos.descripcion}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>    
+</div>
+
+<div mat-dialog-actions>
+    <button mat-raised-button color="primary" [mat-dialog-close]="datos">Aceptar</button>
+    <button mat-stroked-button color="primary" (click)="cerrar()">Cancelar</button>
+</div>
