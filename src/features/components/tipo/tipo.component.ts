@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { TipoService } from '../../../core/services/tipo.service';
 import {ITipo} from '../../../shared/entidades/tipo'
 import { TipoEditarComponent } from '../tipo-editar/tipo-editar.component';
+import { DecidirComponent } from '../../../shared/components/decidir/decidir.component';
 
 
 @Component({
@@ -103,6 +104,42 @@ export class TiposComponent implements OnInit {
       window.alert("Debe escoger el Tipo a modificar");
     }
   }
+
+public verificarEliminar() {
+    if (this.tipoEscogido) {
+      const dialogo = this.servicioDialogo.open(DecidirComponent, {
+        width: "300px",
+        height: "200px",
+        data: {
+          encabezado: `¿Está seguro de eliminar el Tipo ${this.tipoEscogido.descripcion}?`,
+          id: this.tipoEscogido.id
+        },
+        disableClose: true,
+      });
+      dialogo.afterClosed().subscribe({
+        next: datos => {
+          if (datos) {
+            this.servicioTipo.eliminarFestivo(datos.id).subscribe({
+              next: response => {
+                this.listar(-1);
+                window.alert("Tipo eliminado con éxito");
+              },
+              error: error => {
+                window.alert(error.message);
+              }
+            });
+          }
+        },
+        error: error => {
+          window.alert(error.message);
+        }
+      });
+    }
+    else {
+      window.alert("Debe escoger el Tipo a eliminar");
+    }
+  }
+
 
   public buscar() {
     if (this.textoBusqueda.length > 0) {
