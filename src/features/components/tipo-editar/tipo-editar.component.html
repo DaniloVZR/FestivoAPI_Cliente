@@ -1,12 +1,25 @@
 <div mat-dialog-content>
-    <h2>{{datos.encabezado}}</h2>
-    <br>
-    <mat-form-field appearance="fill" style="width:100%;">
-        <mat-label>Descripcion</mat-label>
-        <input matInput [(ngModel)]="datos.tipo.descripcion">
+  <h2>
+    <mat-icon style="vertical-align: middle; margin-right: 0.5rem;">{{ 'category' }}</mat-icon>
+    {{ datos.encabezado }}
+  </h2>
+
+  <div style="margin-top: 1.5rem;">
+    <mat-form-field appearance="fill" style="width: 100%;">
+      <mat-label>Descripción del Tipo</mat-label>
+      <input matInput [(ngModel)]="datos.tipo.descripcion" placeholder="Ej: Festivo Nacional, Regional, Religioso...">
+      <mat-icon matSuffix>description</mat-icon>
     </mat-form-field>
+  </div>
 </div>
+
 <div mat-dialog-actions>
-    <button mat-raised-button color="primary" [mat-dialog-close]="datos">Aceptar</button>
-    <button mat-stroked-button color="primary" (click)="cerrar()">Cancelar</button>
+  <button mat-raised-button color="primary" [mat-dialog-close]="datos">
+    <mat-icon>save</mat-icon>
+    Guardar
+  </button>
+  <button mat-stroked-button (click)="cerrar()">
+    <mat-icon>cancel</mat-icon>
+    Cancelar
+  </button>
 </div>

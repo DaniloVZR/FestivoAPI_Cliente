@@ -1,46 +1,559 @@
-/* You can add global styles to this file, and also import other style files */
+/* Importaciones necesarias */
 @import '../node_modules/@swimlane/ngx-datatable/themes/material.css';
 @import '../node_modules/@swimlane/ngx-datatable/themes/dark.css';
 @import '../node_modules/@swimlane/ngx-datatable/themes/bootstrap.css';
 @import '@angular/material/prebuilt-themes/indigo-pink.css';
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
-body {
-    margin: 0;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;    
+/* Variables CSS para consistencia */
+:root {
+  --primary-color: #6366f1;
+  --primary-dark: #4f46e5;
+  --primary-light: #818cf8;
+  --secondary-color: #f59e0b;
+  --background-color: #f8fafc;
+  --surface-color: #ffffff;
+  --text-primary: #1e293b;
+  --text-secondary: #64748b;
+  --border-color: #e2e8f0;
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --border-radius: 0.75rem;
+  --transition: all 0.2s ease-in-out;
 }
 
+/* Reset global */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+
+/* Navbar moderno */
 .navbar {
-    background-color: blueviolet;
-    padding: 1rem;
-    font-weight: bold;
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+  padding: 1rem 2rem;
+  box-shadow: var(--shadow-md);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
 }
 
 .navbar h3 {
-    margin: 1rem 0;
+  margin: 0;
+  font-weight: 600;
+  font-size: 1.5rem;
+  letter-spacing: -0.025em;
 }
 
+.menu-button {
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--border-radius);
+  font-weight: 500;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: var(--transition);
+  backdrop-filter: blur(10px);
+}
+
+.menu-button:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Container principal */
 .container {
-    margin: 1rem;
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+  animation: fadeIn 0.6s ease-out;
 }
 
-.footer {        
-    background-color: blueviolet;
-    padding: 1rem;
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Footer elegante */
+.footer {
+  background: var(--surface-color);
+  border-top: 1px solid var(--border-color);
+  padding: 2rem;
+  margin-top: 4rem;
+  text-align: center;
 }
 
 .footer span {
-    font-weight: 500;
+  font-weight: 500;
+  color: var(--text-secondary);
+  display: block;
+  margin-bottom: 1rem;
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
-.barraTituloCRUD{
-    background: rgb(24, 2, 53);
-    color: #fff;
-    height: 75px;
-    text-align: center; /* Centrar horizontalmente */
-    display: flex; /* Utilizamos flexbox para centrar verticalmente */
-    justify-content: center; /* Centrar horizontalmente con flexbox */
-    align-items: center; /* Centrar verticalmente con flexbox */
-    width: 100%; /* Ancho completo */
+.footer ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.footer li {
+  color: var(--text-primary);
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  background: var(--background-color);
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+}
+
+/* Estilos para Material Toolbar */
+mat-toolbar {
+  background: var(--surface-color) !important;
+  color: var(--text-primary) !important;
+  box-shadow: var(--shadow-sm) !important;
+  border-bottom: 1px solid var(--border-color);
+  font-weight: 600 !important;
+  font-size: 1.25rem !important;
+}
+
+/* Sección de búsqueda */
+.search-section {
+  background: var(--surface-color);
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 1.5rem;
+  border: 1px solid var(--border-color);
+}
+
+/* Sección de botones */
+.buttons-section {
+  background: var(--surface-color);
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 1.5rem;
+  border: 1px solid var(--border-color);
+  display: flex;
+  gap: 1rem;
+}
+
+/* Mejorar botones de Material */
+.mat-raised-button {
+  font-weight: 500 !important;
+  border-radius: var(--border-radius) !important;
+  padding: 0.75rem 1.5rem !important;
+  text-transform: none !important;
+  box-shadow: var(--shadow-sm) !important;
+  margin-right: 0.75rem !important;
+  transition: var(--transition) !important;
+}
+
+.mat-raised-button:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: var(--shadow-md) !important;
+}
+
+.mat-stroked-button {
+  font-weight: 500 !important;
+  border-radius: var(--border-radius) !important;
+  padding: 0.75rem 1.5rem !important;
+  text-transform: none !important;
+  border-width: 2px !important;
+  margin-right: 0.75rem !important;
+  transition: var(--transition) !important;
+}
+
+.mat-stroked-button:hover {
+  transform: translateY(-1px) !important;
+  box-shadow: var(--shadow-sm) !important;
+}
+
+/* Mejorar campos de formulario */
+.mat-form-field {
+  margin-right: 1rem !important;
+  margin-bottom: 1rem !important;
+}
+
+.mat-form-field-appearance-fill .mat-form-field-flex {
+  border-radius: var(--border-radius) var(--border-radius) 0 0 !important;
+  background-color: var(--background-color) !important;
+}
+
+.mat-form-field-appearance-fill .mat-form-field-underline {
+  background-color: var(--border-color) !important;
+}
+
+.mat-form-field-appearance-fill.mat-focused .mat-form-field-underline {
+  background-color: var(--primary-color) !important;
+}
+
+/* Mejorar DataTable */
+.ngx-datatable {
+  background: var(--surface-color) !important;
+  border-radius: var(--border-radius) !important;
+  box-shadow: var(--shadow-md) !important;
+  border: 1px solid var(--border-color) !important;
+  overflow: hidden !important;
+}
+
+.datatable-header {
+  background: var(--background-color) !important;
+  border-bottom: 2px solid var(--border-color) !important;
+}
+
+.datatable-header-cell {
+  font-weight: 600 !important;
+  color: var(--text-primary) !important;
+  text-transform: uppercase !important;
+  font-size: 0.75rem !important;
+  letter-spacing: 0.05em !important;
+}
+
+.datatable-body-row:hover {
+  background-color: var(--background-color) !important;
+}
+
+.datatable-row-selected {
+  background-color: rgba(99, 102, 241, 0.1) !important;
+}
+
+/* Estilos para diálogos */
+.mat-dialog-container {
+  border-radius: var(--border-radius) !important;
+  box-shadow: var(--shadow-lg) !important;
+  border: 1px solid var(--border-color) !important;
+}
+
+.mat-dialog-content {
+  padding: 2rem !important;
+}
+
+.mat-dialog-content h2 {
+  margin: 0 0 1.5rem 0 !important;
+  color: var(--text-primary) !important;
+  font-weight: 600 !important;
+  font-size: 1.5rem !important;
+}
+
+.mat-dialog-actions {
+  padding: 1rem 2rem 2rem 2rem !important;
+  margin: 0 !important;
+  gap: 0.75rem !important;
+}
+
+/* Página de menús */
+.menus-page {
+  text-align: center;
+  padding: 2rem;
+}
+
+.menus-page h1 {
+  color: var(--text-primary);
+  font-weight: 700;
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
+  letter-spacing: -0.025em;
+}
+
+.botones {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.botones button {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+  color: white;
+  border: none;
+  padding: 1.25rem 2rem;
+  border-radius: var(--border-radius);
+  font-weight: 500;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: var(--shadow-md);
+  min-width: 200px;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.botones button:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+  background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-color) 100%);
+}
+
+/* Barra de título CRUD mejorada */
+.barraTituloCRUD {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+  color: white;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  font-size: 1.5rem;
+  box-shadow: var(--shadow-md);
+  letter-spacing: -0.025em;
+}
+
+/* Contenedor específico para DataTable */
+.datatable-container {
+  background: var(--surface-color);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+}
+
+/* Mejoras adicionales para los diálogos de tipos */
+.mat-dialog-container .mat-form-field {
+  width: 100% !important;
+}
+
+/* Indicadores de éxito y error */
+.success-indicator {
+  background-color: #10b981;
+  color: white;
+  padding: 0.75rem 1rem;
+  border-radius: var(--border-radius);
+  margin: 1rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.error-indicator {
+  background-color: #ef4444;
+  color: white;
+  padding: 0.75rem 1rem;
+  border-radius: var(--border-radius);
+  margin: 1rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Mejoras para el toolbar cuando está dentro de mat-toolbar */
+mat-toolbar .barraTituloCRUD {
+  background: transparent !important;
+  box-shadow: none !important;
+  height: auto !important;
+  color: inherit !important;
+}
+
+/* Estilos para las secciones principales */
+.main-section {
+  background: var(--surface-color);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-color);
+  transition: var(--transition);
+}
+
+.main-section:hover {
+  box-shadow: var(--shadow-md);
+}
+
+/* Mejoras para los títulos de sección */
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--border-color);
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+
+/* Estilos para campos de formulario mejorados */
+.form-grid {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.form-grid-2 {
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.form-grid-3 {
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+
+/* Loading overlay */
+.loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(2px);
+}
+
+/* Breadcrumb navigation */
+.breadcrumb {
+  background: var(--background-color);
+  padding: 1rem 0;
+  margin-bottom: 1rem;
+  border-radius: var(--border-radius);
+}
+
+.breadcrumb ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.breadcrumb li {
+  color: var(--text-secondary);
+}
+
+.breadcrumb li:last-child {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.breadcrumb li:not(:last-child)::after {
+  content: '/';
+  margin-left: 0.5rem;
+  color: var(--text-secondary);
+}
+
+/* Efectos de carga */
+.loading {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: white;
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+  
+  .container {
+    margin: 1rem;
+    padding: 0 1rem;
+  }
+  
+  .botones {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .botones button {
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  .footer ul {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .mat-raised-button,
+  .mat-stroked-button {
+    width: 100% !important;
+    margin-bottom: 0.5rem !important;
+    margin-right: 0 !important;
+  }
+}
+
+/* Animaciones adicionales */
+@keyframes slideInFromTop {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-in {
+  animation: slideInFromTop 0.4s ease-out;
+}
+
+/* Estados de hover mejorados */
+.interactive-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+  transition: var(--transition);
+}
+
+/* Indicadores de estado */
+.status-indicator {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+}
+
+.status-active {
+  background-color: #10b981;
+}
+
+.status-inactive {
+  background-color: #ef4444;
+}
+
+.status-pending {
+  background-color: var(--secondary-color);
 }

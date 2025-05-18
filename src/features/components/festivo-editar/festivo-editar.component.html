@@ -1,39 +1,55 @@
 <div mat-dialog-content>
-    <h2>{{datos.encabezado}}</h2>
+  <h2>
+    <mat-icon style="vertical-align: middle; margin-right: 0.5rem;">{{ 'event' }}</mat-icon>
+    {{ datos.encabezado }}
+  </h2>
 
-    <mat-form-field appearance="fill" style="width:100%;">
-        <mat-label>Nombre</mat-label>
-        <input matInput [(ngModel)]="datos.festivo.nombre">
+  <div style="display: grid; gap: 1rem;">
+    <mat-form-field appearance="fill" style="width: 100%;">
+      <mat-label>Nombre del Festivo</mat-label>
+      <input matInput [(ngModel)]="datos.festivo.nombre" placeholder="Ej: Día de la Independencia">
+      <mat-icon matSuffix>title</mat-icon>
     </mat-form-field>
 
-    <br>
+    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem;">
+      <mat-form-field appearance="fill">
+        <mat-label>Día</mat-label>
+        <input matInput type="number" [(ngModel)]="datos.festivo.dia" min="1" max="31">
+        <mat-icon matSuffix>today</mat-icon>
+      </mat-form-field>
 
-    <mat-form-field appearance="fill">
-        <mat-label>Dia</mat-label>
-        <input matInput [(ngModel)]="datos.festivo.dia">
-    </mat-form-field>
-
-    <mat-form-field appearance="fill">
+      <mat-form-field appearance="fill">
         <mat-label>Mes</mat-label>
-        <input matInput [(ngModel)]="datos.festivo.mes">
-    </mat-form-field>
+        <input matInput type="number" [(ngModel)]="datos.festivo.mes" min="1" max="12">
+        <mat-icon matSuffix>calendar_month</mat-icon>
+      </mat-form-field>
 
-    <mat-form-field appearance="fill">
-        <mat-label>Dias de Pascua</mat-label>
-        <input matInput [(ngModel)]="datos.festivo.diaPascua">
-    </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Días de Pascua</mat-label>
+        <input matInput type="number" [(ngModel)]="datos.festivo.diaPascua">
+        <mat-icon matSuffix>cake</mat-icon>
+      </mat-form-field>
+    </div>
 
-    <mat-form-field appearance="fill" style="width:100%">
-        <mat-label>Tipos de Festivos</mat-label>
-        <mat-select [(value)]="datos.festivo.idTipo">
-            <mat-option *ngFor="let tipos of datos.tipos" [value]="tipos">  
-                {{tipos.descripcion}}
-            </mat-option>
-        </mat-select>
-    </mat-form-field>    
+    <mat-form-field appearance="fill" style="width: 100%">
+      <mat-label>Tipo de Festivo</mat-label>
+      <mat-select [(value)]="datos.festivo.idTipo">
+        <mat-option *ngFor="let tipos of datos.tipos" [value]="tipos">  
+          {{ tipos.descripcion }}
+        </mat-option>
+      </mat-select>
+      <mat-icon matSuffix>category</mat-icon>
+    </mat-form-field>
+  </div>
 </div>
 
 <div mat-dialog-actions>
-    <button mat-raised-button color="primary" [mat-dialog-close]="datos">Aceptar</button>
-    <button mat-stroked-button color="primary" (click)="cerrar()">Cancelar</button>
+  <button mat-raised-button color="primary" [mat-dialog-close]="datos">
+    <mat-icon>save</mat-icon>
+    Guardar
+  </button>
+  <button mat-stroked-button (click)="cerrar()">
+    <mat-icon>cancel</mat-icon>
+    Cancelar
+  </button>
 </div>

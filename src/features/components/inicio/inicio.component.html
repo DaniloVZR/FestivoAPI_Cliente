@@ -1,5 +1,27 @@
-<h1>Menús</h1>
-<div class="botones">
-  <button [routerLink]="['/festivo']">Festivos</button>
-  <button [routerLink]="['/tipos']">Tipos de festivos</button>
+<div class="menus-page animate-in">
+  <h1>
+    <mat-icon style="font-size: 3rem; margin-right: 1rem; vertical-align: middle;">dashboard</mat-icon>
+    Panel de Control
+  </h1>
+  <p style="color: var(--text-secondary); font-size: 1.1rem; margin-bottom: 3rem;">
+    Seleccione una opción para comenzar a gestionar los datos
+  </p>
+  
+  <div class="botones">   
+    <button [routerLink]="['/festivo']" class="interactive-card">
+      <mat-icon style="font-size: 2rem; margin-bottom: 0.5rem; display: block;">event</mat-icon>
+      Gestionar Festivos
+      <div style="font-size: 0.875rem; margin-top: 0.5rem; opacity: 0.9;">
+        Administrar días festivos del año
+      </div>
+    </button>   
+    
+    <button [routerLink]="['/tipos']" class="interactive-card">
+      <mat-icon style="font-size: 2rem; margin-bottom: 0.5rem; display: block;">category</mat-icon>
+      Tipos de Festivos
+      <div style="font-size: 0.875rem; margin-top: 0.5rem; opacity: 0.9;">
+        Configurar categorías de festivos
+      </div>
+    </button> 
+  </div> 
 </div>

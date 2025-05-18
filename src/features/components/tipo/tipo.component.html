@@ -1,21 +1,48 @@
-<mat-toolbar>
-    <div class="barraTituloCRUD">
-        Tipos de Festivos
-    </div>
+<mat-toolbar class="animate-in">
+  <span>
+    <i class="material-icons" style="vertical-align: middle; margin-right: 0.5rem;">category</i>
+    Gestión de Tipos de Festivos
+  </span>
 </mat-toolbar>
-<div>
-   <mat-form-field appearance="fill">
-        <mat-label>Buscar</mat-label>
-        <input matInput [(ngModel)]="textoBusqueda">
-    </mat-form-field>
-    <button mat-stroked-button color="primary" (click)="buscar()">Buscar</button>
+
+<div class="search-section animate-in">
+  <mat-form-field appearance="fill" style="width: 300px;">
+    <mat-label>Buscar tipo...</mat-label>
+    <input matInput [(ngModel)]="textoBusqueda" placeholder="Ingrese descripción del tipo">
+    <mat-icon matSuffix>search</mat-icon>
+  </mat-form-field>
+  <button mat-stroked-button color="primary" (click)="buscar()" style="margin-left: 1rem;">
+    <mat-icon>search</mat-icon>
+    Buscar
+  </button>
 </div>
-<div>
-    <button mat-raised-button color="primary" (click)="agregar()">Agregar</button>
-    <button mat-raised-button color="accent" (click)="modificar()">Modificar</button>
-   <button mat-raised-button color="warn" (click)="verificarEliminar()">Eliminar</button>
-    <ngx-datatable class="dark" [rows]="tipos" [columns]="columnas" [limit]=10
-    [headerHeight]="50"  [footerHeight]="50" [columnMode]="modoColumna.force" [selectionType]="tipoSeleccion.single"
-    (activate)="escoger($event)" [selected]="[tipoEscogido]">
-    </ngx-datatable>
+
+<div class="buttons-section animate-in">
+  <button mat-raised-button color="primary" (click)="agregar()">
+    <mat-icon>add</mat-icon>
+    Agregar Tipo
+  </button>
+  <button mat-raised-button color="accent" (click)="modificar()">
+    <mat-icon>edit</mat-icon>
+    Modificar
+  </button>
+  <button mat-raised-button color="warn" (click)="verificarEliminar()">
+    <mat-icon>delete</mat-icon>
+    Eliminar
+  </button>
+</div>
+
+<div class="datatable-container animate-in">
+  <ngx-datatable 
+    class="bootstrap interactive-card" 
+    [rows]="tipos" 
+    [columns]="columnas" 
+    [limit]="10"
+    [headerHeight]="50"  
+    [footerHeight]="50" 
+    [columnMode]="modoColumna.force" 
+    [selectionType]="tipoSeleccion.single"    
+    (activate)="escoger($event)" 
+    [selected]="[tipoEscogido]">
+  </ngx-datatable>
 </div>
