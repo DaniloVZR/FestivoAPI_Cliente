@@ -8,7 +8,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { ITipo } from '../../../shared/entidades/tipo';
 import { TipoService } from '../../../core/services/tipo.service';
 import { FormsModule } from '@angular/forms';
-import { NgFor } from '@angular/common';
 import { DecidirComponent } from '../../../shared/components/decidir/decidir.component';
 
 @Component({

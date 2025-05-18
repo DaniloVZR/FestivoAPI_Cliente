@@ -1,0 +1,31 @@
+<mat-toolbar class="animate-in">
+  <span>
+    <i class="material-icons" style="vertical-align: middle; margin-right: 0.5rem;">event</i>
+    Ver Festivos Del Año Que Desees
+  </span>
+</mat-toolbar>
+
+<div class="search-section animate-in">
+  <mat-form-field appearance="fill" style="width: 300px;">
+    <mat-label>Buscar festivo...</mat-label>
+    <input matInput [(ngModel)]="textoBusqueda" placeholder="Ingrese año">
+    <mat-icon matSuffix>search</mat-icon>
+  </mat-form-field>
+  <button mat-stroked-button color="primary" (click)="buscar()" style="margin-left: 1rem;">
+    <mat-icon>search</mat-icon>
+    Buscar
+  </button>
+</div>
+
+<div class="datatable-container animate-in">
+  <ngx-datatable 
+    class="bootstrap interactive-card" 
+    [rows]="fechasFestivos" 
+    [columns]="columnas" 
+    [limit]="TAMANO"
+    [headerHeight]="50"  
+    [footerHeight]="50" 
+    [columnMode]="modoColumna.force" 
+    [selectionType]="tipoTipo.single">
+  </ngx-datatable>
+</div>

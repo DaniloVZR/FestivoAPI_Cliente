@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
 import { IFestivo } from '../../shared/entidades/festivo';
+import { IFechaFestivo } from '../../shared/dto/fechaFestivo';
 
 @Injectable({
   providedIn: 'root'
@@ -40,11 +41,11 @@ export class FestivoService {
     return this.http.delete<IFestivo[]>(`${this.url}/eliminar/${id}`);
   }
 
-  public obtenerFestivosAno(year: number): Observable<IFestivo[]> {
-    return this.http.get<IFestivo[]>(`${this.url}/listar/${year}`);
+  public obtenerFestivosAno(year: number): Observable<IFechaFestivo[]> {
+    return this.http.get<IFechaFestivo[]>(`${this.url}/listar/${year}`);
   }
 
-  public verificarFestivo(year: number, mes: number, dia: number): Observable<IFestivo[]> {
-    return this.http.get<IFestivo[]>(`${this.url}/Verificar/${year}/${mes}/${dia}`);
+  public verificarFestivo(year: number, mes: number, dia: number): Observable<boolean> {
+    return this.http.get<boolean>(`${this.url}/Verificar/${year}/${mes}/${dia}`);
   }
 }

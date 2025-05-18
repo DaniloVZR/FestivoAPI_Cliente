@@ -23,5 +23,21 @@
         Configurar categorías de festivos
       </div>
     </button> 
+
+    <button [routerLink]="['/festivos-year']" class="interactive-card">
+      <mat-icon style="font-size: 2rem; margin-bottom: 0.5rem; display: block;">category</mat-icon>
+      Ver los festivos del Año
+      <div style="font-size: 0.875rem; margin-top: 0.5rem; opacity: 0.9;">
+        Selecciona un año y mira sus festivos
+      </div>
+    </button> 
+
+    <button [routerLink]="['/verificar-festivo']" class="interactive-card">
+      <mat-icon style="font-size: 2rem; margin-bottom: 0.5rem; display: block;">category</mat-icon>
+      Verifica Festivos
+      <div style="font-size: 0.875rem; margin-top: 0.5rem; opacity: 0.9;">
+        Selecciona una fecha y comprueba si es festivo
+      </div>
+    </button> 
   </div> 
 </div>
