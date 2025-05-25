@@ -1,19 +1,33 @@
-<div class="navbar">
-  <h3 [routerLink]="['/inicio']">Aplicación de Festivos</h3>
-  <button class="menu-button" [routerLink]="['/inicio']">
-    <i class="material-icons" style="vertical-align: middle; margin-right: 0.5rem;">menu</i>
-    Menú
-  </button>
-</div>
+<mat-sidenav-container>
+  <mat-sidenav #menuLateral mode="over" class="sidenav">
+    <mat-nav-list>
+      <div *ngFor="let opcion of opciones">
+        <a mat-list-item [routerLink]="opcion.url" class="menu-button" (click)="menuLateral.toggle()">
+          {{opcion.titulo}}
+        </a>
+      </div>
+    </mat-nav-list>
+  </mat-sidenav>
 
-<div class="container">
-  <router-outlet></router-outlet>
-</div>
+  <mat-sidenav-content>
+    <div class="navbar">
+      <button class="menu-button" (click)="menuLateral.toggle()">
+        <i class="material-icons" style="vertical-align: middle; margin-right: 0.5rem;">menu</i>
+        Menú
+      </button>
+      <h3>Aplicación de Festivos</h3>
+    </div>
 
-<footer class="footer">
-  <span>Desarrollado con ❤️ por:</span>
-  <ul>
-    <li>Danilo Urrego</li>
-    <li>Angelo Arango</li>
-  </ul>
-</footer>
+    <div class="container">
+      <router-outlet></router-outlet>
+    </div>
+
+    <footer class="footer">
+      <span>Desarrollado con ❤️ por:</span>
+      <ul>
+        <li>Danilo Urrego</li>
+        <li>Angelo Arango</li>
+      </ul>
+    </footer>
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -6,6 +6,7 @@ import { VerFestivosComponent } from '../features/components/ver-festivos/ver-fe
 import { VerificarFestivoComponent } from '../features/components/verificar-festivo/verificar-festivo.component';
 
 export const routes: Routes = [
+    { path: '', redirectTo: '/inicio', pathMatch: 'full' },
     { path: "inicio", component: InicioComponent },
     { path: "festivo", component: FestivoComponent },
     { path: "tipos", component: TiposComponent },
